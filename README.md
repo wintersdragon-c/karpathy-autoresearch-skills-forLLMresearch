@@ -46,7 +46,7 @@ The agent checks for relevant skills before any action. The pipeline enforces or
 
 | Platform | Status | Install Path |
 |---|---|---|
-| Claude Code marketplace/plugin install | Not supported yet | No marketplace package shipped in this repository |
+| Claude Code | Supported via git install | `claude plugins marketplace add` + `claude plugins install` |
 | Codex | Supported | One-liner below |
 | OpenCode | Supported | One-liner below |
 
@@ -72,7 +72,12 @@ Detailed guide: [docs/README.opencode.md](docs/README.opencode.md)
 
 ### Claude Code
 
-This repository does not yet ship a Claude Code marketplace package or plugin manifest. Claude-side development tests exist but are not a public installation path.
+```bash
+claude plugins marketplace add https://github.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch
+claude plugins install karpathy-autoresearch-skills@autoresearch-skills-marketplace
+```
+
+After install, restart Claude Code. The `using-autoresearch` skill will be injected at every session start, orienting the agent to the autoresearch pipeline.
 
 ### Verify Installation
 
@@ -119,7 +124,7 @@ bash tests/claude-code/run-skill-tests.sh --autoresearch-integration
 
 ## Known Limitations
 
-- **Claude Code marketplace install is not shipped.** Install via git clone as described above.
+- **Not yet listed on the official Claude Code marketplace.** Install via the two-step git install above. The plugin works fully via local marketplace registration.
 - **OpenCode bootstrap system prompt not injected.** The `skills.paths` install path does not currently guarantee proactive skill use at session start. OpenCode users can load and use the skills explicitly.
 - **Live integration tests require Claude CLI.** Not run in CI by default.
 

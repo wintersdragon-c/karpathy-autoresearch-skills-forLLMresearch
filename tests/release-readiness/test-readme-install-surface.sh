@@ -20,7 +20,6 @@ rg -q "Platform Support Matrix" "$README" || fail "README missing platform suppo
 rg -q "Claude Code" "$README" || fail "README missing Claude Code support statement"
 rg -q "Codex" "$README" || fail "README missing Codex support statement"
 rg -q "OpenCode" "$README" || fail "README missing OpenCode support statement"
-rg -q "not yet ship a Claude Code marketplace package" "$README" || fail "README missing honest Claude limitation"
 rg -q "\\.codex/INSTALL.md" "$README" || fail "README missing Codex install path"
 rg -q "\\.opencode/INSTALL.md" "$README" || fail "README missing OpenCode install path"
 rg -q "git clone" "$CODEX_DOC" || fail "Codex doc missing clone instructions"
@@ -43,7 +42,38 @@ CHANGELOG="$REPO_ROOT/CHANGELOG.md"
 [ -f "$CHANGELOG" ] || fail "CHANGELOG.md missing"
 rg -q "\[0\.1\.0\]" "$CHANGELOG" || fail "CHANGELOG.md missing [0.1.0] section"
 rg -q "Known Limitations" "$README" || fail "README missing Known Limitations section"
-rg -q "Claude Code marketplace install is not shipped" "$README" || fail "README missing Claude Code marketplace limitation"
+rg -qi "not yet listed on the official Claude Code marketplace" "$README" || fail "README missing Claude Code marketplace limitation"
 rg -q "does not currently guarantee proactive skill use at session start" "$README" || fail "README missing OpenCode bootstrap limitation"
+
+[ -f "$REPO_ROOT/.claude-plugin/plugin.json" ] || fail ".claude-plugin/plugin.json missing"
+[ -f "$REPO_ROOT/.claude-plugin/marketplace.json" ] || fail ".claude-plugin/marketplace.json missing"
+rg -q "karpathy-autoresearch-skills-forLLMresearch" "$REPO_ROOT/.claude-plugin/plugin.json" || fail "plugin.json missing plugin name"
+[ -f "$REPO_ROOT/hooks/hooks.json" ] || fail "hooks/hooks.json missing"
+rg -q "SessionStart" "$REPO_ROOT/hooks/hooks.json" || fail "hooks.json missing SessionStart"
+rg -q "startup" "$REPO_ROOT/hooks/hooks.json" || fail "hooks.json missing matcher"
+[ -f "$REPO_ROOT/hooks/session-start" ] || fail "hooks/session-start missing"
+[ -x "$REPO_ROOT/hooks/session-start" ] || fail "hooks/session-start not executable"
+[ -f "$REPO_ROOT/hooks/run-hook.cmd" ] || fail "hooks/run-hook.cmd missing"
+[ -f "$REPO_ROOT/skills/using-autoresearch/SKILL.md" ] || fail "skills/using-autoresearch/SKILL.md missing"
+rg -q "using-autoresearch" "$REPO_ROOT/hooks/session-start" || fail "session-start does not reference using-autoresearch"
+rg -q "plugins marketplace add" "$README" || fail "README missing claude plugins marketplace add command"
+
+# Bind README install command names to manifest names
+PLUGIN_JSON="$REPO_ROOT/.claude-plugin/plugin.json"
+MARKETPLACE_JSON="$REPO_ROOT/.claude-plugin/marketplace.json"
+plugin_name=$(python3 -c "import json,sys; print(json.load(open('$PLUGIN_JSON'))['name'])" 2>/dev/null || echo "")
+marketplace_name=$(python3 -c "import json,sys; print(json.load(open('$MARKETPLACE_JSON'))['name'])" 2>/dev/null || echo "")
+[ -n "$plugin_name" ] || fail "could not read plugin name from plugin.json"
+[ -n "$marketplace_name" ] || fail "could not read name from marketplace.json"
+rg -q "$plugin_name" "$README" || fail "README install command does not match plugin.json name ($plugin_name)"
+rg -q "@$marketplace_name" "$README" || fail "README install command does not match marketplace.json name (@$marketplace_name)"
+
+# Skill contract assertions: using-autoresearch must enforce global discipline
+rg -q "SUBAGENT-STOP" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing SUBAGENT-STOP guard"
+rg -q "EXTREMELY-IMPORTANT" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing EXTREMELY-IMPORTANT block"
+rg -q "before any response or action" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing pre-action discipline"
+rg -q "autoresearch-brainstorming" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing brainstorming skill reference"
+rg -q "autoresearch-loop" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing loop skill reference"
+rg -q "Red Flag" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing Red Flags rationalization table"
 
 echo "[PASS] release-readiness install surface checks"
