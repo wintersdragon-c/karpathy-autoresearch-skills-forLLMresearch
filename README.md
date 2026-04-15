@@ -130,6 +130,14 @@ bash tests/claude-code/run-skill-tests.sh --autoresearch-integration
 
 ## Updating
 
+**Claude Code (plugin install):**
+
+```bash
+claude plugins update karpathy-autoresearch-skills
+```
+
+**Codex / OpenCode (git clone install):**
+
 ```bash
 cd ~/.codex/autoresearch-skills-v1 && git pull
 ```

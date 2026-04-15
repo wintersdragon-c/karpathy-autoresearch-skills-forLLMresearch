@@ -3,6 +3,9 @@
   "owner": {
     "name": "wintersdragon-c"
   },
+  "metadata": {
+    "description": "Local marketplace for karpathy-autoresearch-skills — autonomous ML research skill suite for LLM/RL/NLP experiments."
+  },
   "plugins": [
     {
       "name": "karpathy-autoresearch-skills",
