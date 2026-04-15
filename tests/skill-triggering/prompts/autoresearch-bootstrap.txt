@@ -1,0 +1,1 @@
+The autoresearch adaptation plan is approved. Please generate the autoresearch compatibility layer — profile.yaml, state.yaml, results.tsv, ledger.jsonl — and run the baseline to validate the setup.

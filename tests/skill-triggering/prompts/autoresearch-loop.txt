@@ -1,0 +1,1 @@
+The autoresearch bootstrap is complete and the baseline is validated. Start the autonomous experiment loop — propose changes to train.py, run them, and keep improvements within the approved edit scope.

@@ -1,0 +1,65 @@
+schema_version: "1.0"
+profile_version: 1
+
+repo_shape:
+  repo_type: null                  # FILL IN: e.g. "ml-training", "data-pipeline", "library"
+  small_repo_profile: null         # FILL IN: e.g. "single-gpu-training", "cpu-only"
+  primary_language: null           # FILL IN: e.g. "python", "julia"
+  package_manager: null            # FILL IN: e.g. "uv", "pip", "conda"
+  notes: null                      # FILL IN: any repo-specific notes, or null
+
+runtime:
+  manager: null                    # FILL IN: e.g. "uv", "python", "bash"
+  env_prep_command: null           # FILL IN: e.g. "uv sync", or null if not needed
+  entry_command: null              # FILL IN: e.g. "uv run train.py > run.log 2>&1"
+  timeout_seconds: null            # FILL IN: e.g. 360 (seconds per run)
+  log_path: null                   # FILL IN: e.g. "run.log" — canonical log path; logging.run_log_path must match this value
+  results_tsv_path: autoresearch/results.tsv
+  default_runner: null             # FILL IN: e.g. "uv run", "python"
+
+experiment:
+  time_budget_seconds: null        # FILL IN: e.g. 360
+  max_experiments: null            # FILL IN: e.g. 20
+  max_consecutive_crashes: null    # FILL IN: e.g. 3
+  max_retry_on_crash: null         # FILL IN: e.g. 1
+  keep_rule: null                  # FILL IN: e.g. "metric improves over best_ref"
+  discard_rule: null               # FILL IN: e.g. "metric does not improve"
+  crash_rule: null                 # FILL IN: e.g. "non-zero exit or timeout"
+  metric_name: null                # FILL IN: e.g. "val_bpb"
+  metric_direction: null           # FILL IN: "lower_is_better" or "higher_is_better"
+
+edit_scope:
+  allowed_paths: []                # FILL IN: list of paths the loop may edit, e.g. ["train.py"]
+  readonly_paths: []               # FILL IN: list of paths the loop must never edit, e.g. ["prepare.py"]
+  primary_edit_target: null        # FILL IN: e.g. "train.py"
+
+baseline:
+  must_run_first: true
+  protocol: null                   # FILL IN: description of baseline protocol
+  baseline_description: null       # FILL IN: e.g. "Unmodified train.py, default hyperparameters"
+
+git_policy:
+  branch_prefix: null              # FILL IN: e.g. "autoresearch/"
+  commit_before_run: true
+  keep_commit_strategy: null       # allowed: keep-current-commit, tag-current-commit-and-keep
+  discard_strategy: null           # allowed: hard-reset-to-pre-run-commit, soft-reset-to-pre-run-commit
+  crash_strategy: null             # allowed: hard-reset-to-pre-run-commit, soft-reset-to-pre-run-commit, keep-crash-commit-for-inspection
+
+logging:
+  run_log_path: null               # FILL IN: e.g. "run.log" — must match runtime.log_path
+  summary_extract_command: null    # FILL IN: e.g. "grep '^val_bpb:' run.log | tail -1"
+  results_columns:
+    - commit
+    - metric_value
+    - memory_gb
+    - status
+    - description
+
+bootstrap_scaffold:
+  scaffold_paths:
+    - autoresearch/profile.yaml
+    - autoresearch/state.yaml
+    - autoresearch/results.tsv
+    - autoresearch/ledger.jsonl
+  generated_files: []              # FILL IN: list any additional generated files, or []
+  thin_adapter_required: null      # FILL IN: true or false

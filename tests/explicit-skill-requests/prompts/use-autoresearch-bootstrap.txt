@@ -1,0 +1,1 @@
+Use the autoresearch-bootstrap skill to generate the compatibility layer.

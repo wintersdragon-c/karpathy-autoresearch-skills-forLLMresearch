@@ -1,0 +1,21 @@
+name: skills-fast-checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  fast-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ripgrep
+        run: sudo apt-get update && sudo apt-get install -y ripgrep
+
+      - name: Static contract runner
+        run: bash tests/autoresearch-skills/run-tests.sh
+
+      - name: Fast Claude harness suite
+        run: bash tests/claude-code/run-skill-tests.sh

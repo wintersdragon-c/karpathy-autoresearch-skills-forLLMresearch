@@ -1,0 +1,26 @@
+# schema_version: "1.0"
+# profile_version: 1
+# Bootstrap state template — canonical defaults after a successful bootstrap pass.
+# Fields marked null are set by earlier stages (spec/plan) or later stages (loop).
+
+schema_version: "1.0"
+project_id: null                        # FILL IN: from spec
+current_stage: autoresearch-bootstrap
+stage_status: completed
+profile_status: spec-frozen
+bootstrap_status: completed
+baseline_status: validated
+experiment_status: not-started
+active_spec_path: null                  # PRESERVE: set by autoresearch-brainstorming
+active_profile_path: null               # FILL IN: path to generated profile.yaml
+active_plan_path: null                  # PRESERVE: set by autoresearch-planning
+active_run_manifest: null               # loop-owned, leave null
+baseline_ref: null                      # FILL IN: commit hash from baseline run
+best_ref: null                          # loop-owned, leave null
+rejection_streak: 0
+last_run_status: null
+next_allowed_skills:
+  - autoresearch-loop
+rollback_target: null
+blocker_reason: null
+profile_version: 1

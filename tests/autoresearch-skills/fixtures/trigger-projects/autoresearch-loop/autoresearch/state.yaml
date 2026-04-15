@@ -1,0 +1,20 @@
+schema_version: "1.0"
+project_id: autoresearch-demo
+current_stage: autoresearch-loop
+stage_status: in_progress
+profile_status: spec-frozen
+bootstrap_status: completed
+baseline_status: validated
+experiment_status: not-started
+active_spec_path: docs/autoresearch/specs/2026-04-10-autoresearch-design.md
+active_profile_path: autoresearch/profile.yaml
+active_plan_path: docs/autoresearch/plans/2026-04-10-autoresearch-plan.md
+active_run_manifest: null
+baseline_ref: abc1234
+best_ref: null
+rejection_streak: 0
+last_run_status: null
+next_allowed_skills:
+  - autoresearch-loop
+rollback_target: null
+blocker_reason: null

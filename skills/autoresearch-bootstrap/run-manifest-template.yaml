@@ -1,0 +1,8 @@
+# Per-run scratch file. Overwritten at the start of each new run.
+# This is NOT the canonical history — ledger.jsonl is canonical.
+# Use this file to track the current run's intent and outcome during execution.
+
+proposed_change: null        # FILL IN: description of what this run is testing
+pre_run_commit: null         # FILL IN: git commit hash before the run (set before launch)
+launch_command: null         # FILL IN: the exact command that was executed
+terminal_outcome: null       # FILL IN: one of: keep, discard, crash

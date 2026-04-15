@@ -1,0 +1,4 @@
+proposed_change: "Baseline run — unmodified train.py"
+pre_run_commit: abc1234
+launch_command: "uv run train.py > run.log 2>&1"
+terminal_outcome: keep

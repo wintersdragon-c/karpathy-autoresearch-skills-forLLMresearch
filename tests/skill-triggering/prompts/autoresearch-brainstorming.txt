@@ -1,0 +1,1 @@
+I have a small PyTorch training repo with a train.py and prepare.py. I want to set it up for autonomous experiment iteration but haven't touched anything yet. Can you diagnose the repo and figure out what profile it needs?

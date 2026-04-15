@@ -1,0 +1,1 @@
+The autoresearch brainstorming spec has been approved. Now I need a concrete plan for adapting the repo — generating the profile, scaffolding the autoresearch directory, and setting up the baseline run harness.

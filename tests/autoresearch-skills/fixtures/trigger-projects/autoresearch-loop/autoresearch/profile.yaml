@@ -1,0 +1,68 @@
+schema_version: "1.0"
+profile_version: 1
+
+repo_shape:
+  repo_type: training-script
+  small_repo_profile: true
+  primary_language: python
+  package_manager: uv
+  notes: "Small GPT language model training repo"
+
+runtime:
+  manager: uv
+  env_prep_command: uv sync
+  entry_command: uv run train.py
+  timeout_seconds: 360
+  log_path: run.log
+  results_tsv_path: autoresearch/results.tsv
+  default_runner: uv
+
+experiment:
+  time_budget_seconds: 300
+  max_experiments: 20
+  max_consecutive_crashes: 3
+  max_retry_on_crash: 1
+  keep_rule: metric improves (val_bpb decreases)
+  discard_rule: metric does not improve
+  crash_rule: non-zero exit or timeout
+  metric_name: val_bpb
+  metric_direction: lower
+
+edit_scope:
+  allowed_paths:
+    - train.py
+  readonly_paths:
+    - prepare.py
+  primary_edit_target: train.py
+
+baseline:
+  must_run_first: true
+  protocol: "run `uv run train.py > run.log 2>&1`, extract `grep \"^val_bpb:\" run.log`, record result"
+  baseline_description: "Unmodified train.py baseline run"
+
+git_policy:
+  branch_prefix: autoresearch/
+  commit_before_run: true
+  keep_commit_strategy: keep-current-commit
+  discard_strategy: hard-reset-to-pre-run-commit
+  crash_strategy: hard-reset-to-pre-run-commit
+
+logging:
+  run_log_path: run.log
+  summary_extract_command: "grep \"^val_bpb:\" run.log"
+  results_columns:
+    - commit
+    - metric_value
+    - memory_gb
+    - status
+    - description
+
+bootstrap_scaffold:
+  scaffold_paths:
+    - autoresearch/
+  generated_files:
+    - autoresearch/profile.yaml
+    - autoresearch/state.yaml
+    - autoresearch/results.tsv
+    - autoresearch/ledger.jsonl
+  thin_adapter_required: false
