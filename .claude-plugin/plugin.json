@@ -1,0 +1,19 @@
+{
+  "name": "karpathy-autoresearch-skills",
+  "description": "Autonomous ML research skill suite for LLM/RL/NLP experiments. Wraps Karpathy's autoresearch loop in a structured pipeline: brainstorming → planning → bootstrap → loop.",
+  "version": "0.1.0",
+  "author": {
+    "name": "wintersdragon-c"
+  },
+  "homepage": "https://github.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch",
+  "repository": "https://github.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch",
+  "license": "MIT",
+  "keywords": [
+    "autoresearch",
+    "llm",
+    "rl",
+    "nlp",
+    "skills",
+    "research"
+  ]
+}

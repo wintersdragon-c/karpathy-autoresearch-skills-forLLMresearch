@@ -1,0 +1,17 @@
+{
+  "name": "autoresearch-skills-marketplace",
+  "owner": {
+    "name": "wintersdragon-c"
+  },
+  "plugins": [
+    {
+      "name": "karpathy-autoresearch-skills",
+      "description": "Autonomous ML research skill suite for LLM/RL/NLP experiments.",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "wintersdragon-c"
+      }
+    }
+  ]
+}
