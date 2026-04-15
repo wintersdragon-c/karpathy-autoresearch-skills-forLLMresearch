@@ -11,7 +11,7 @@ Enable the autoresearch skill suite in Codex via native skill discovery.
 
 1. Clone this repository somewhere stable, for example:
    ```bash
-   git clone <your-repo-url> ~/.codex/autoresearch-skills-v1
+   git clone https://github.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch.git ~/.codex/autoresearch-skills-v1
    ```
 
    If you already have a local checkout, use that path instead of cloning again.

@@ -24,7 +24,8 @@ rg -q "not yet ship a Claude Code marketplace package" "$README" || fail "README
 rg -q "\\.codex/INSTALL.md" "$README" || fail "README missing Codex install path"
 rg -q "\\.opencode/INSTALL.md" "$README" || fail "README missing OpenCode install path"
 rg -q "git clone" "$CODEX_DOC" || fail "Codex doc missing clone instructions"
-rg -q "publish-time checklist item" "$CODEX_DOC" || fail "Codex doc missing URL placeholder policy"
+rg -q "wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch" "$CODEX_DOC" || fail "Codex doc missing real GitHub clone URL"
+rg -q "raw.githubusercontent.com" "$README" || fail "README missing raw GitHub URL for Codex/OpenCode install"
 rg -q "skills.paths" "$OPENCODE_DOC" || fail "OpenCode doc missing skills.paths instructions"
 rg -q "does not inject a bootstrap system prompt" "$OPENCODE_DOC" || fail "OpenCode doc missing bootstrap limitation"
 

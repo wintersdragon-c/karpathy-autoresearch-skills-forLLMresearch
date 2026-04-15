@@ -11,7 +11,7 @@ This repository does not currently ship an OpenCode plugin. Install it through O
 
 1. Clone this repository somewhere stable, for example:
    ```bash
-   git clone <your-repo-url> ~/.config/opencode/autoresearch-skills-v1
+   git clone https://github.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch.git ~/.config/opencode/autoresearch-skills-v1
    ```
 
 2. Add this repo's `skills/` directory to `opencode.json` using `skills.paths`:

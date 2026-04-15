@@ -17,7 +17,7 @@ Superpowers skills for running autonomous ML experiment loops on small research 
 Tell Codex:
 
 ```text
-Open and follow the instructions in /path/to/autoresearch-skills-v1/.codex/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch/refs/heads/main/.codex/INSTALL.md
 ```
 
 Detailed guide: [docs/README.codex.md](docs/README.codex.md)
@@ -27,7 +27,7 @@ Detailed guide: [docs/README.codex.md](docs/README.codex.md)
 Tell OpenCode:
 
 ```text
-Open and follow the instructions in /path/to/autoresearch-skills-v1/.opencode/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch/refs/heads/main/.opencode/INSTALL.md
 ```
 
 Detailed guide: [docs/README.opencode.md](docs/README.opencode.md)

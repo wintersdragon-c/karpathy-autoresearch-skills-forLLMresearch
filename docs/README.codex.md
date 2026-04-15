@@ -4,20 +4,18 @@ Guide for using the autoresearch skill suite with Codex via native skill discove
 
 ## Quick Install
 
-Open this local file and follow it:
+Tell Codex:
 
 ```text
-/path/to/autoresearch-skills-v1/.codex/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch/refs/heads/main/.codex/INSTALL.md
 ```
 
 ## Manual Installation
 
 1. Clone this repository:
    ```bash
-   git clone <your-repo-url> ~/.codex/autoresearch-skills-v1
+   git clone https://github.com/wintersdragon-c/karpathy-autoresearch-skills-forLLMresearch.git ~/.codex/autoresearch-skills-v1
    ```
-
-   If this repository has not been published yet, `<your-repo-url>` is a publish-time checklist item and must be replaced with the final public clone URL before the release is announced.
 
 2. Create the skills symlink:
    ```bash
