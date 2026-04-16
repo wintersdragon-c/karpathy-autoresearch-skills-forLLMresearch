@@ -213,6 +213,15 @@ require_pattern "Review the plan critically before starting" "$REPO_ROOT/skills/
 require_pattern "env_prep_command" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
 require_pattern "When To Revisit Earlier Steps" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
 require_pattern "key in-scope files" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
+# Bootstrap: git hygiene precondition checks
+require_pattern "git rev-parse --git-dir" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
+require_pattern "git status --porcelain" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
+require_pattern "index.lock" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
+require_pattern "detached HEAD" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
+require_pattern "pre-commit" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
+# Bootstrap: extractor dry-run and numeric output validation
+require_pattern "summary_extract_command" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
+require_pattern "must match the pattern" "$REPO_ROOT/skills/autoresearch-bootstrap/SKILL.md"
 echo "[PASS] autoresearch-bootstrap static checks"
 
 # Task 4: autoresearch-loop static checks

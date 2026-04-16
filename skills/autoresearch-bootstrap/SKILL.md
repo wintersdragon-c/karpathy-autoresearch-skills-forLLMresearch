@@ -23,6 +23,18 @@ If `active_plan_path` is null — stop immediately, report the error, and do not
 
 If `active_spec_path` is null — stop immediately, report the error, and do not proceed. A frozen spec must exist before bootstrap can run.
 
+## Repo Precondition Checks
+
+Before generating any artifacts, verify the repo environment is safe for bootstrap:
+
+- Verify the repo is a git repository: `git rev-parse --git-dir` must succeed
+- Verify the working tree is clean: `git status --porcelain` must produce no output
+- Detect stale `.git/index.lock` — if present, warn the user and stop
+- Detect detached HEAD — bootstrap must run on a named branch
+- Detect pre-commit or husky hooks that may block automated commits — if present, note them in the plan review but do not disable them
+
+If any check fails, set `blocker_reason` in state.yaml and stop.
+
 ## The Process
 
 ### Step 1 — Load and review the approved plan
@@ -85,6 +97,7 @@ After the run completes or reaches the timeout boundary:
 - If the log file (`runtime.log_path`) is absent or empty before extraction is attempted, set `blocker_reason` in state.yaml and stop — do not proceed to step 9
 - Extract the metric using `logging.summary_extract_command`
 - If extraction fails, set `blocker_reason` in state.yaml and stop — do not proceed to step 9
+- Dry-run `logging.summary_extract_command` against the generated baseline log before accepting the baseline. The extracted value must match the pattern `^-?[0-9]+\.?[0-9]*$`. If extraction returns `85.2%`, `342ms`, empty output, or multi-line output, set `blocker_reason` and stop.
 
 ### Step 9 — Record baseline result
 

@@ -81,4 +81,25 @@ else
 fi
 echo ""
 
+echo "Test 9: Git hygiene precondition checks present..."
+if rg -q "git rev-parse --git-dir" "$SKILL" && \
+   rg -q "git status --porcelain" "$SKILL" && \
+   rg -q "detached HEAD" "$SKILL"; then
+    echo "  [PASS] Git hygiene checks present"
+else
+    echo "  [FAIL] Git hygiene checks missing"
+    exit 1
+fi
+echo ""
+
+echo "Test 10: Baseline extractor dry-run and numeric-output validation present..."
+if rg -q "summary_extract_command" "$SKILL" && \
+   rg -q "must match the pattern" "$SKILL"; then
+    echo "  [PASS] Extractor dry-run contract present"
+else
+    echo "  [FAIL] Extractor dry-run contract missing"
+    exit 1
+fi
+echo ""
+
 echo "=== All autoresearch-bootstrap harness tests passed ==="
