@@ -201,6 +201,12 @@ logging.results_columns
 
 Every field MUST have a concrete value or a documented `null` with justification. No field may be left as TBD.
 
+**Research metric freeze rules:**
+- Freeze a **mechanical metric** only. The metric must be extractable as a **single numeric value** with no human judgment.
+- Freeze the **metric extraction source** explicitly: stdout, log file, jsonl, or csv.
+- Record the exact metric line or field shape the next skill will extract (e.g., `grep "^val_bpb:" run.log | awk '{print $2}'`).
+- If the repo cannot produce a stable single-number metric within the approved time budget, classify it as `v2-required` rather than guessing.
+
 **Git strategy fields require exact canonical enum values.** Write them exactly as shown — no paraphrasing:
 
 | Field | Valid values |

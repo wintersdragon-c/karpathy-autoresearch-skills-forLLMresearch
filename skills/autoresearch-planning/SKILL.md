@@ -66,6 +66,15 @@ Never bundle artifact creation and verification into one step. If a task changes
 - Exact commands with expected output
 - DRY, YAGNI, frequent commits
 
+## Metric Verify Validation
+
+The plan's verify pipeline must produce a clean numeric output that downstream skills can parse mechanically:
+
+- The verify pipeline must dry-run successfully before bootstrap executes it.
+- The final extracted output must match the pattern `^-?[0-9]+\.?[0-9]*$`.
+- Reject common bad outputs explicitly: `85.2%` (trailing unit), `342ms` (trailing unit), empty output, multi-line output, or prose such as `PASS`.
+- Every plan must specify where the metric is extracted from: stdout, a log file, jsonl, or csv.
+
 ## Plan Document Header
 
 **Every plan MUST start with this header:**
