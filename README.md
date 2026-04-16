@@ -1,6 +1,6 @@
 # Autoresearch Skills V1
 
-An autonomous ML research skill suite for coding agents, built on top of [Karpathy's autoresearch](https://github.com/karpathy/autoresearch) experiment loop and [Superpowers](https://github.com/obra/superpowers) composable skill framework.
+Autonomous research scaffolding and experiment-loop skills for top-tier CS conference workflows: deep learning, reinforcement learning, NLP, agent systems, computer vision, and multimodal research repos. Built on [Karpathy's autoresearch](https://github.com/karpathy/autoresearch) and [Superpowers](https://github.com/obra/superpowers).
 
 ## What This Is
 
@@ -10,18 +10,30 @@ An autonomous ML research skill suite for coding agents, built on top of [Karpat
 
 This project combines both: it wraps the autoresearch experiment loop in a full Superpowers skill pipeline, adding structured brainstorming, planning, bootstrap, and loop skills that enforce research discipline — baseline-first, crash retry, research taste criteria, branch isolation, and an autonomous operation contract.
 
+## Quick Decision Guide
+
+| I want to... | Use |
+|---|---|
+| Check whether this training repo fits V1 | `autoresearch-brainstorming` |
+| Freeze the experiment contract and metric extraction | `autoresearch-brainstorming` |
+| Turn an approved spec into an execution plan | `autoresearch-planning` |
+| Generate `profile.yaml`, baseline artifacts, and loop-ready scaffolding | `autoresearch-bootstrap` |
+| Start bounded autonomous experiment iteration | `autoresearch-loop` |
+
+See [research onboarding examples](docs/autoresearch/research-onboarding-examples.md) for domain-specific walkthroughs.
+
 ## Research Domain Coverage
 
 **Currently covered:**
 
-- **LLM** — language model training, architecture search, optimizer tuning
-- **RL** — reinforcement learning, reward shaping, policy optimization
+- **Deep learning / LLM** — language model training, architecture search, optimizer tuning
+- **Reinforcement learning** — reward shaping, policy optimization, environment wrappers
 - **NLP** — sequence modeling, tokenization, fine-tuning workflows
 
 **Planned:**
 
-- Agent systems
-- Computer vision
+- Agent systems and eval harnesses
+- Computer vision (offline evaluation scripts)
 - Multimodal
 
 The pipeline is domain-agnostic at the skill level; domain coverage refers to the tested compatibility profiles and example repos.

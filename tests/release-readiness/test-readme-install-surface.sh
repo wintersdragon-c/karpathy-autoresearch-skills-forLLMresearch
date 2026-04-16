@@ -76,4 +76,13 @@ rg -q "autoresearch-brainstorming" "$REPO_ROOT/skills/using-autoresearch/SKILL.m
 rg -q "autoresearch-loop" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing loop skill reference"
 rg -q "Red Flag" "$REPO_ROOT/skills/using-autoresearch/SKILL.md" || fail "using-autoresearch missing Red Flags rationalization table"
 
+# README research positioning
+rg -qi "top.*CS conference|top-tier.*conference" "$README" || fail "README missing top CS conference positioning"
+rg -q "deep learning" "$README" || fail "README missing deep learning domain"
+rg -q "reinforcement learning" "$README" || fail "README missing reinforcement learning domain"
+rg -q "computer vision" "$README" || fail "README missing computer vision domain"
+rg -q "Quick Decision Guide" "$README" || fail "README missing Quick Decision Guide"
+rg -q "research-onboarding-examples.md" "$README" || fail "README missing examples doc link"
+[ -f "$REPO_ROOT/docs/autoresearch/research-onboarding-examples.md" ] || fail "research-onboarding-examples.md missing"
+
 echo "[PASS] release-readiness install surface checks"
