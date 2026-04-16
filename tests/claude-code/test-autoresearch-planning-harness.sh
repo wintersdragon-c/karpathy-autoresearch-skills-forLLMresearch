@@ -102,4 +102,16 @@ else
 fi
 echo ""
 
+echo "Test 11: Planning skill requires numeric verify dry-run validation..."
+if rg -q "must match the pattern" "$SKILL" && \
+   rg -q "85.2%" "$SKILL" && \
+   rg -q "342ms" "$SKILL" && \
+   rg -q "empty output" "$SKILL"; then
+    echo "  [PASS] Numeric verify dry-run contract present"
+else
+    echo "  [FAIL] Numeric verify dry-run contract missing"
+    exit 1
+fi
+echo ""
+
 echo "=== All autoresearch-planning harness tests passed ==="

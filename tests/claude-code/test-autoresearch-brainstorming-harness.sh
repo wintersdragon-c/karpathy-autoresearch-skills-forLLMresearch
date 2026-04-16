@@ -243,4 +243,15 @@ else
 fi
 echo ""
 
+echo "Test 26: Research metric freeze requires mechanical metric + extraction source..."
+if rg -q "mechanical metric" "$SKILL" && \
+   rg -q "single numeric value" "$SKILL" && \
+   rg -q "metric extraction source" "$SKILL"; then
+    echo "  [PASS] Research metric freeze contract present"
+else
+    echo "  [FAIL] Research metric freeze contract missing"
+    exit 1
+fi
+echo ""
+
 echo "=== All autoresearch-brainstorming harness tests passed ==="

@@ -89,6 +89,11 @@ require_pattern "project_id: autoresearch-demo" "$FIXTURES_DIR/trigger-projects/
 require_pattern "ask them to review" "$REPO_ROOT/skills/autoresearch-brainstorming/SKILL.md"
 require_pattern "rejection_streak: 0" "$FIXTURES_DIR/trigger-projects/autoresearch-brainstorming/autoresearch/state.yaml"
 require_pattern "stage_status: in_progress" "$FIXTURES_DIR/trigger-projects/autoresearch-brainstorming/autoresearch/state.yaml"
+# Brainstorming: research metric and extractor freeze contract
+require_pattern "mechanical metric" "$REPO_ROOT/skills/autoresearch-brainstorming/SKILL.md"
+require_pattern "single numeric value" "$REPO_ROOT/skills/autoresearch-brainstorming/SKILL.md"
+require_pattern "metric extraction source" "$REPO_ROOT/skills/autoresearch-brainstorming/SKILL.md"
+require_pattern "stdout, log file, jsonl, or csv" "$REPO_ROOT/skills/autoresearch-brainstorming/SKILL.md"
 echo "[PASS] autoresearch-brainstorming static checks"
 
 # Task 2: autoresearch-planning static checks
@@ -135,6 +140,12 @@ require_pattern "Completeness" "$REPO_ROOT/skills/autoresearch-planning/plan-doc
 require_pattern "Spec Alignment" "$REPO_ROOT/skills/autoresearch-planning/plan-document-reviewer-prompt.md"
 require_pattern "Task Decomposition" "$REPO_ROOT/skills/autoresearch-planning/plan-document-reviewer-prompt.md"
 require_pattern "Buildability" "$REPO_ROOT/skills/autoresearch-planning/plan-document-reviewer-prompt.md"
+# Planning: verify command must dry-run to one naked number
+require_pattern "must match the pattern" "$REPO_ROOT/skills/autoresearch-planning/SKILL.md"
+require_pattern "85.2%" "$REPO_ROOT/skills/autoresearch-planning/SKILL.md"
+require_pattern "342ms" "$REPO_ROOT/skills/autoresearch-planning/SKILL.md"
+require_pattern "empty output" "$REPO_ROOT/skills/autoresearch-planning/SKILL.md"
+require_pattern "multi-line output" "$REPO_ROOT/skills/autoresearch-planning/SKILL.md"
 echo "[PASS] autoresearch-planning static checks"
 
 # Task 3: autoresearch-bootstrap static checks
