@@ -24,7 +24,13 @@ If any condition is false, set `stage_status: blocked` and `blocker_reason` expl
 Per-run steps (execute in order):
 
 1. Read the profile from `active_profile_path`. Also read the key in-scope files listed in `edit_scope.allowed_paths` and `edit_scope.readonly_paths` to understand the current state of the code before proposing a change.
-2. Propose a change within `edit_scope.allowed_paths`
+2. **Review history before proposing.** Git IS the memory — the agent must consult it before every proposal:
+   - Read the last 10-20 results rows and recent ledger entries
+   - Run `git log --oneline -20` to see recent experiment commits
+   - If the previous accepted run was a keep, run `git diff HEAD~1` to understand what changed
+   - Use `git show <commit-hash> --stat` to inspect earlier successful experiments when considering similar approaches
+   - Do not repeat exact approaches that were already discarded or reverted
+3. Propose a change within `edit_scope.allowed_paths`
 3. If the proposed change requires files outside `edit_scope.allowed_paths`: **reject-and-record** (do NOT edit silently, do NOT ask for ad hoc permission); continue with another in-scope idea OR stop with `blocker_reason` if no valid in-scope ideas remain
 4. Commit before the run; record `pre_run_commit` in the run manifest
 5. Write run manifest to `autoresearch/runs/<run_id>.yaml`; set `active_run_manifest` in state.yaml
@@ -74,6 +80,19 @@ Once the loop has started, do NOT pause to ask the user if you should continue. 
 **If you run out of ideas:** Think harder. Re-read the in-scope files for new angles. Try combining previous near-misses. Try more radical architectural or optimizer changes. The loop runs until a stop condition is met or the user interrupts — not until you feel uncertain.
 
 **results.tsv must not be committed to git.** It is an untracked working file. Never `git add autoresearch/results.tsv`.
+
+## Periodic Summary Reporting
+
+Every 10 iterations (or on bounded-run completion), print a brief progress summary:
+
+```
+Baseline: <baseline_metric>
+Current best: <best_metric> (run <run_id>)
+Keeps: N | Discards: N | Crashes: N
+Last 5: keep, discard, keep, crash, keep
+```
+
+This is operator-facing output — it helps the user gauge progress without reading the full ledger.
 
 ## Editable-Surface Hard Gate
 

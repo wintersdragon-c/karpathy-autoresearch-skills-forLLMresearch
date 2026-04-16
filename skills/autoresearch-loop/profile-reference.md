@@ -64,3 +64,27 @@ To find the TSV row for a ledger entry: look up the row in `results.tsv` where t
 `active_run_manifest` in state.yaml is the path to the per-run scratch file (`autoresearch/runs/<run_id>.yaml`). It is overwritten for each new run.
 
 It is NOT canonical history. `ledger.jsonl` is the canonical record of all runs. `active_run_manifest` is a convenience pointer to the most recent run's scratch file, useful for inspecting the current or last run without scanning the ledger.
+
+---
+
+## 7. `guard_status` Semantics
+
+`guard_status` is an optional secondary outcome recorded when a guard blocks a metric-improving run. Values: `pass`, `fail`, or `-` (no guard configured). When a run improves the primary metric but fails a guard check, the run is classified as `discard` with `guard_status: fail` in the ledger.
+
+---
+
+## 8. Periodic Summary Reporting
+
+The loop must print a brief operator-facing progress summary every 10 iterations or at bounded-run completion. The summary includes: baseline metric, current best metric, keep/discard/crash counts, and the last 5 outcomes.
+
+---
+
+## 9. History Review Depth
+
+Before proposing the next change, the loop reviews:
+- The last 10-20 rows of `results.tsv`
+- Recent entries in `ledger.jsonl`
+- `git log --oneline -20` for recent experiment commits
+- `git diff HEAD~1` for the most recent accepted change
+
+This review window prevents the agent from repeating discarded approaches and helps it build on successful experiments.

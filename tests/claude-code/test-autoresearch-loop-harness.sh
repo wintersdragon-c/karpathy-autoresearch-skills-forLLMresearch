@@ -169,4 +169,24 @@ else
 fi
 echo ""
 
+echo "Test 18: Git-as-memory protocol present..."
+if rg -q "git log --oneline -20" "$SKILL" && \
+   rg -q "git diff HEAD~1" "$SKILL" && \
+   rg -q "Git IS the memory" "$SKILL"; then
+    echo "  [PASS] Git-as-memory protocol present"
+else
+    echo "  [FAIL] Git-as-memory protocol missing"
+    exit 1
+fi
+echo ""
+
+echo "Test 19: Periodic summary reporting present..."
+if rg -q "Every 10 iterations" "$SKILL" && rg -q "Baseline:" "$SKILL"; then
+    echo "  [PASS] Periodic summary reporting present"
+else
+    echo "  [FAIL] Periodic summary reporting missing"
+    exit 1
+fi
+echo ""
+
 echo "=== All autoresearch-loop harness tests passed ==="

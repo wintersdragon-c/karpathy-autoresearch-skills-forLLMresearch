@@ -299,4 +299,14 @@ require_pattern "VRAM soft constraint" "$REPO_ROOT/skills/autoresearch-loop/SKIL
 # Autonomous operation
 require_pattern "do NOT pause to ask" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
 require_pattern "results.tsv must not be committed" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
+# Loop: git-as-memory protocol
+require_pattern "git log --oneline -20" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
+require_pattern "git diff HEAD~1" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
+require_pattern "git show.*--stat" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
+require_pattern "Git IS the memory" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
+# Loop: periodic summary reporting
+require_pattern "Every 10 iterations" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
+require_pattern "Baseline:" "$REPO_ROOT/skills/autoresearch-loop/SKILL.md"
+# Profile reference: guard_status
+require_pattern "guard_status" "$REPO_ROOT/skills/autoresearch-loop/profile-reference.md"
 echo "[PASS] autoresearch-loop static checks"
